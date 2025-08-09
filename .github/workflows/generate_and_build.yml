@@ -1,0 +1,100 @@
+name: Generate + Build Rock APK
+on: { workflow_dispatch: {} }
+permissions: { contents: write }
+
+jobs:
+  generate_and_build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate project files
+        run: |
+          mkdir -p Rock/app/src/main/java/com/rock/browser
+          mkdir -p Rock/app/src/main/res/{layout,values,values-ar,drawable,mipmap-anydpi-v26}
+          cat > Rock/settings.gradle <<'EOF'
+          rootProject.name = "Rock"
+          include ':app'
+          EOF
+          cat > Rock/build.gradle <<'EOF'
+          buildscript {
+            ext { kotlin_version = '1.9.24' }
+            repositories { google(); mavenCentral() }
+            dependencies {
+              classpath 'com.android.tools.build:gradle:8.5.0'
+              classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+            }
+          }
+          allprojects { repositories { google(); mavenCentral() } }
+          task clean(type: Delete) { delete rootProject.buildDir }
+          EOF
+          cat > Rock/gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+          android.useAndroidX=true
+          android.nonTransitiveRClass=true
+          android.enableJetifier=true
+          EOF
+          cat > Rock/app/build.gradle <<'EOF'
+          plugins { id 'com.android.application'; id 'org.jetbrains.kotlin.android' }
+          android {
+            namespace 'com.rock.browser'
+            compileSdk 34
+            defaultConfig { applicationId "com.rock.browser"; minSdk 24; targetSdk 34; versionCode 1; versionName "1.0" }
+            buildTypes {
+              release { minifyEnabled false; proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' }
+              debug { debuggable true }
+            }
+            buildFeatures { viewBinding true }
+          }
+          dependencies {
+            implementation 'androidx.core:core-ktx:1.13.1'
+            implementation 'androidx.appcompat:appcompat:1.7.0'
+            implementation 'com.google.android.material:material:1.12.0'
+            implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+            implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+            implementation 'androidx.activity:activity-ktx:1.9.1'
+            implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+            implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+          }
+          EOF
+          cat > Rock/app/proguard-rules.pro <<'EOF'
+          EOF
+          cat > Rock/app/src/main/AndroidManifest.xml <<'EOF'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+            <application
+              android:allowBackup="true"
+              android:icon="@mipmap/ic_launcher"
+              android:label="@string/app_name"
+              android:roundIcon="@mipmap/ic_launcher_round"
+              android:supportsRtl="true"
+              android:theme="@style/Theme.Rock">
+              <activity android:name=".SettingsActivity" android:exported="false"/>
+              <activity android:name=".MainActivity" android:exported="true">
+                <intent-filter>
+                  <action android:name="android.intent.action.MAIN" />
+                  <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+              </activity>
+            </application>
+            <uses-permission android:name="android.permission.INTERNET"/>
+          </manifest>
+          EOF
+          cat > Rock/app/src/main/res/values/themes.xml <<'EOF'
+          <resources>
+            <style name="Theme.Rock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+              <item name="android:statusBarColor">@android:color/black</item>
+              <item name="android:navigationBarColor">@android:color/black</item>
+              <item name="colorPrimary">@color/rock_red</item>
+              <item name="colorSecondary">@color/rock_gold</item>
+            </style>
+          </resources>
+          EOF
+          cat > Rock/app/src/main/res/values/colors.xml <<'EOF'
+          <resources>
+            <color name="rock_black">#000000</color>
+            <color name="rock_gold">#D4AF37</color>
+            <color name="rock_red">#D50000</color>
+            <color name="rock_white">#FFFFFF</color>
+          </resources>
+          EOF
+          cat > Rock/app/src/main/res/values/strings.xml <<'
