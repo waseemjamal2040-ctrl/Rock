@@ -8,6 +8,16 @@ android {
     debug { debuggable true }
   }
   buildFeatures { viewBinding true }
+  
+  // --- الإضافة الجديدة لحل المشكلة ---
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = '17'
+  }
+  // --- نهاية الإضافة ---
 }
 dependencies {
   implementation 'androidx.core:core-ktx:1.13.1'
