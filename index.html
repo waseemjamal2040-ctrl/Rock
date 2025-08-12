@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>خدمات تقنية — برمجة | تصميم | كتابة | ترجمة</title>
+  <meta name="description" content="صفحة هبوط عربية متقدمة عرض خدمات تقنية: برمجة، تصميم، كتابة محتوى، ترجمة." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f172a;          /* slate-900 */
+      --card: #111827;       /* gray-900 */
+      --muted: #94a3b8;      /* slate-400 */
+      --text: #e5e7eb;       /* gray-200 */
+      --accent: #22d3ee;     /* cyan-400 */
+      --accent-2: #a78bfa;   /* violet-400 */
+      --ok: #34d399;         /* emerald-400 */
+      --warn: #fbbf24;       /* amber-400 */
+      --danger: #fb7185;     /* rose-400 */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth}
+    body{font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 100% -10%,#1f2937,transparent),radial-gradient(800px 500px at -10% 10%,#0b1022,transparent),var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .btn{display:inline-block;padding:.9rem 1.2rem;border-radius:calc(var(--radius) - 6px);background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b1022;font-weight:700;box-shadow:var(--shadow);transition:transform .15s ease, filter .2s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+    .btn.ghost{background:transparent;border:1px solid #334155;color:var(--text);box-shadow:none}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px);background:rgba(2,6,23,.6);border-bottom:1px solid rgba(148,163,184,.1);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
+    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
+    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 200deg, var(--accent), var(--accent-2));box-shadow:0 6px 18px rgba(124,58,237,.35)}
+    nav ul{display:flex;align-items:center;gap:1rem;list-style:none;margin:0;padding:0}
+    .menu-btn{display:none}
+    @media (max-width:820px){
+      nav ul{display:none}
+      .menu-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border:1px solid #334155;border-radius:12px;background:transparent;color:var(--text)}
+      .mobile-menu{display:none;position:absolute;inset-inline:0;top:64px;background:#0b1022;border-bottom:1px solid #1f2937}
+      .mobile-menu.open{display:block}
+      .mobile-menu ul{display:grid;gap:.2rem;list-style:none;margin:0;padding:1rem}
+    }
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:4rem 0}
+    .hero .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
+    .hero h1{font-size:clamp(28px,4vw,46px);line-height:1.2;margin:.4rem 0}
+    .hero p{color:var(--muted);margin:0 0 1rem}
+    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .7rem;border:1px dashed #334155;border-radius:999px;color:#cbd5e1;font-size:.9rem;background:rgba(2,6,23,.6)}
+    .pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+    .pill{padding:.45rem .7rem;border-radius:999px;background:#0b1225;border:1px solid #243042;color:#c7d2fe}
+    .mock{aspect-ratio:4/3;border-radius:var(--radius);background:linear-gradient(160deg,#111827,#0b1022);border:1px solid #243042;display:grid;place-items:center;position:relative;overflow:hidden}
+    .mock::after{content:"لقطة شاشة لموقعك";color:#94a3b8;opacity:.8}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}}
+    section{padding:3rem 0;border-top:1px solid rgba(148,163,184,.08)}
+    .grid{display:grid;gap:1rem}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow)}
+    .card h3{margin:.4rem 0 0}
+    .muted{color:var(--muted)}
+    .list{display:grid;gap:.5rem;margin:1rem 0 0;padding:0}
+    .list li{list-style:"✓  ";padding-inline-start:.4rem}
+    .kpis{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem}
+    .kpi{flex:1 1 220px;background:#0b1225;border:1px solid #243042;border-radius:14px;padding:1rem}
+    .kpi b{font-size:1.6rem}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    @media (max-width:900px){.pricing{grid-template-columns:1fr}}
+    .price{border:1px solid #243042;border-radius:16px;background:#0b1225;padding:1.2rem;position:relative}
+    .price .tag{position:absolute;top:12px;inset-inline-start:12px;background:linear-gradient(135deg,var(--ok),var(--accent));color:#0b1022;padding:.25rem .6rem;border-radius:999px;font-weight:700}
+    footer{padding:2.5rem 0;color:#a3a3a3}
+    .social a{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border:1px solid #243042;border-radius:12px}
+    .divider{height:1px;background:#1f2937;margin:1.2rem 0}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="الصفحة الرئيسية">
+        <span class="logo" aria-hidden="true"></span>
+        <span>خدمات تقنية</span>
+      </a>
+      <nav>
+        <button class="menu-btn" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">القائمة ▾</button>
+        <ul>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#work">أعمال</a></li>
+          <li><a href="#pricing">الباقات</a></li>
+          <li><a href="#contact">تواصل</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="mobileMenu" class="mobile-menu" hidden>
+      <ul>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#work">أعمال</a></li>
+        <li><a href="#pricing">الباقات</a></li>
+        <li><a href="#contact">تواصل</a></li>
+      </ul>
+    </div>
+  </header>  <!-- Hero -->  <main id="home" class="container hero">
+    <div>
+      <span class="badge">جاهز لبناء موقعك اليوم؟</span>
+      <h1>نحو حضور رقمي أنيق وسريع الأداء.</h1>
+      <p>نساعدك في تصميم وبرمجة مواقع حديثة مستجيبة لكل الشاشات، مع كتابة محتوى عربي احترافي وترجمة دقيقة عند الحاجة انشاء فيدوهات بالذكاء الاصطناعي ، كتابة مقالات ..</p>
+      <div class="pill-row" aria-label="التقنيات المستخدمة">
+        <span class="pill">HTML</span>
+        <span class="pill">CSS</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">React (اختياري)</span>
+        <span class="pill">SEO</span>
+        <span class="pill">A11y</span>
+      </div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <a class="btn" href="#contact">ابدأ الآن</a>
+        <a class="btn ghost" href="#work">استعرض الأعمال</a>
+      </div>
+      <div class="kpis" aria-label="مؤشرات">
+        <div class="kpi"><b>+50</b><div class="muted">مشروع منجز</div></div>
+        <div class="kpi"><b>≤1.0s</b><div class="muted">زمن تفاعل أولي</div></div>
+        <div class="kpi"><b>+95</b><div class="muted">درجة Lighthouse</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="mock" role="img" aria-label="معاينة تصميم موقع"></div>
+    </div>
+  </main>  <!-- Services -->  <section id="services">
+    <div class="container">
+      <h2>الخدمات</h2>
+      <p class="muted">اختَر ما تحتاجه، أو اطلب باقة مخصصة.</p>
+      <div class="grid cols-3" style="margin-top:1rem">
+        <div class="card">
+          <h3>برمجة مواقع</h3>
+          <p class="muted">مواقع سريعة وآمنة مع أفضل الممارسات.</p>
+          <ul class="list">
+            <li>تصميم واجهات حديث</li>
+            <li>لوحة تحكم بسيطة</li>
+            <li>تكامل مع واتساب وبريد</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>تصميم جرافيك</h3>
+          <p class="muted">هوية بصرية وشعارات وبروفايلات شركات.</p>
+          <ul class="list">
+            <li>شعار + ألوان وخطوط</li>
+            <li>بوستات سوشيال</li>
+            <li>عروض تقديمية</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>كتابة وترجمة</h3>
+          <p class="muted">محتوى عربي واضح وترجمة إنجليزي/عربي.</p>
+          <ul class="list">
+            <li>صفحات خدمات ومدونة</li>
+            <li>تحسين محركات البحث</li>
+            <li>تدقيق لغوي</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Work / Portfolio -->  <section id="work">
+    <div class="container">
+      <h2>نماذج أعمال</h2>
+      <p class="muted">صور وعناوين لمشاريع يمكن استبدالها لاحقًا.</p>
+      <div class="grid cols-3" style="margin-top:1rem">
+        <div class="card">
+          <div class="mock" aria-label="معاينة مشروع 1"></div>
+          <h3>موقع شركة متقدمة</h3>
+          <p class="muted">واجهة هبوط مع نموذج تواصل سريع.</p>
+        </div>
+        <div class="card">
+          <div class="mock" aria-label="معاينة مشروع 2"></div>
+          <h3>متجر إلكتروني مصغّر</h3>
+          <p class="muted">سلة مشتريات ودفع عند الاستلام.</p>
+        </div>
+        <div class="card">
+          <div class="mock" aria-label="معاينة مشروع 3"></div>
+          <h3>مدونة تقنية</h3>
+          <p class="muted">تصنيفات ومشاركات محسّنة للسيو.</p>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Pricing -->  <section id="pricing">
+    <div class="container">
+      <h2>الباقات</h2>
+      <p class="muted">أسعار استرشادية — يمكن التخصيص حسب المطلوب.</p>
+      <div class="pricing" style="margin-top:1rem">
+        <div class="price">
+          <span class="tag">مبتدئ</span>
+          <h3>صفحة هبوط</h3>
+          <p class="muted">صفحة واحدة، تصميم مخصص، نموذج تواصل.</p>
+          <ul class="list">
+            <li>متجاوبة لجميع الشاشات</li>
+            <li>تحسين سرعة وأساسيات السيو</li>
+            <li>تسليم خلال 3–5 أيام</li>
+          </ul>
+          <div class="divider"></div>
+          <a href="#contact" class="btn" aria-label="طلب باقة صفحة هبوط">اطلب الآن</a>
+        </div>
+        <div class="price">
+          <span class="tag">شائع</span>
+          <h3>موقع تعريفي</h3>
+          <p class="muted">حتى 5 صفحات (الرئيسية، عنا، خدمات، أعمال، تواصل).</p>
+          <ul class="list">
+            <li>تكامل واتساب وبريد</li>
+            <li>محتوى عربي مُنقّح</li>
+            <li>دليل إدارة بسيط</li>
+          </ul>
+          <div class="divider"></div>
+          <a href="#contact" class="btn" aria-label="طلب باقة موقع تعريفي">ابدأ</a>
+        </div>
+        <div class="price">
+          <span class="tag">مخصص</span>
+          <h3>حل متقدم</h3>
+          <p class="muted">لوحة تحكم، عضويات، تكاملات خارجية.</p>
+          <ul class="list">
+            <li>تصميم/برمجة حسب الطلب</li>
+            <li>اختبارات وضمان لمدة شهر</li>
+            <li>قابلية توسّع</li>
+          </ul>
+          <div class="divider"></div>
+          <a href="#contact" class="btn" aria-label="طلب حل متقدم">ناقشنا فكرتك</a>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Contact -->  <section id="contact">
+    <div class="container">
+      <h2>تواصل معنا</h2>
+      <p class="muted">أخبرنا عن مشروعك لنبدأ فورًا.</p>
+      <div class="grid cols-2" style="margin-top:1rem">
+        <form class="card" id="contactForm">
+          <label class="sr-only" for="name">الاسم</label>
+          <input id="name" name="name" required placeholder="الاسم" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)" />
+          <label class="sr-only" for="email">البريد</label>
+          <input id="email" name="email" type="email" required placeholder="البريد الإلكتروني" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)" />
+          <label class="sr-only" for="message">الرسالة</label>
+          <textarea id="message" name="message" rows="4" required placeholder="اكتب وصفًا سريعًا لاحتياجك" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)"></textarea>
+          <button class="btn" type="submit">إرسال</button>
+          <p class="muted" id="formNote" style="margin-top:.5rem">سيتم فتح واتساب برسالة جاهزة.</p>
+        </form>
+        <div class="card">
+          <h3>معلومات</h3>
+          <ul class="list">
+            <li>الاستجابة خلال 24 ساعة</li>
+            <li>دعم عبر البريد وواتساب</li>
+            <li>فاتورة وتسليم ملفات المصدر</li>
+          </ul>
+          <div class="kpis">
+            <div class="kpi"><b>+4</b><div class="muted">سنوات خبرة</div></div>
+            <div class="kpi"><b>+20</b><div class="muted">مجال صناعة</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  <footer class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div>© <span id="year"></span> خدمات تقنية — كل الحقوق محفوظة.</div>
+      <div class="social" aria-label="روابط">
+        <a href="#" aria-label="واتساب" id="whBtn">واتساب</a>
+        <a href="mailto:waseemja2004@gmail.com" aria-label="بريد">بريد</a>
+        <a href="#home" aria-label="أعلى">للأعلى ↑</a>
+      </div>
+    </div>
+  </footer>  <script>
+    // سنة الفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // قائمة الجوال
+    const btn = document.getElementById('menuBtn');
+    const mobile = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => {
+      const open = mobile.classList.toggle('open');
+      mobile.toggleAttribute('hidden', !open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+
+    // إرسال رسالة واتساب جاهزة
+    const phone = '+970598306258'; // ← عدّل الرقم
+    function buildWA(text){
+      const t = encodeURIComponent(text);
+      return `https://wa.me/${phone.replace(/\D/g,'')}?text=${t}`;
+    }
+    document.getElementById('whBtn')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(buildWA('مرحبًا، أريد الاستفسار عن خدمة.'), '_blank');
+    });
+
+    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const text = `اسمي: ${name}\nالبريد: ${email}\n\n${message}`;
+      window.open(buildWA(text), '_blank');
+    });
+  </script></body>
+</html>
