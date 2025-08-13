@@ -1,300 +1,699 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>خدمات تقنية — برمجة | تصميم | كتابة | ترجمة</title>
-  <meta name="description" content="صفحة هبوط عربية متقدمة عرض خدمات تقنية: برمجة، تصميم، كتابة محتوى، ترجمة." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>مدونة — مقالاتي</title>
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="مدونة شخصية متقدمة لعرض المقالات بصورة عصرية مع حفظ تلقائي وتبديل نهاري/ليلي." />
+
+  <!-- ====== الأساسيات والتصميم ====== -->
   <style>
+    /* Reset خفيف ومتوافق مع RTL */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Noto Kufi Arabic","Noto Sans Arabic","Tahoma",Arial,sans-serif;line-height:1.6;background:var(--bg);color:var(--ink)}
+    img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
     :root{
-      --bg: #0f172a;          /* slate-900 */
-      --card: #111827;       /* gray-900 */
-      --muted: #94a3b8;      /* slate-400 */
-      --text: #e5e7eb;       /* gray-200 */
-      --accent: #22d3ee;     /* cyan-400 */
-      --accent-2: #a78bfa;   /* violet-400 */
-      --ok: #34d399;         /* emerald-400 */
-      --warn: #fbbf24;       /* amber-400 */
-      --danger: #fb7185;     /* rose-400 */
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      /* الوضع الداكن الافتراضي (يحترم تفضيل النظام) */
+      --bg:#0b1020;          /* خلفية عامة */
+      --paper:#0f172a;       /* خلفية البطاقات */
+      --ink:#e5e7eb;         /* نص أساسي */
+      --muted:#94a3b8;       /* نص باهت */
+      --ring:rgba(34,211,238,.35);
+      --brand:#22d3ee;       /* أزرق سماوي */
+      --accent:#7c3aed;      /* بنفسجي */
+      --success:#10b981;
+      --danger:#ef4444;
+      --card:#0f172a;
+      --card-border:rgba(148,163,184,.2);
+      --shadow:0 10px 30px rgba(2,6,23,.4);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;scroll-behavior:smooth}
-    body{font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 100% -10%,#1f2937,transparent),radial-gradient(800px 500px at -10% 10%,#0b1022,transparent),var(--bg);color:var(--text)}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1100px,92%);margin-inline:auto}
-    .btn{display:inline-block;padding:.9rem 1.2rem;border-radius:calc(var(--radius) - 6px);background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b1022;font-weight:700;box-shadow:var(--shadow);transition:transform .15s ease, filter .2s}
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
-    .btn.ghost{background:transparent;border:1px solid #334155;color:var(--text);box-shadow:none}
-    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(10px);background:rgba(2,6,23,.6);border-bottom:1px solid rgba(148,163,184,.1);z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
-    .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
-    .logo{width:36px;height:36px;border-radius:12px;background:conic-gradient(from 200deg, var(--accent), var(--accent-2));box-shadow:0 6px 18px rgba(124,58,237,.35)}
-    nav ul{display:flex;align-items:center;gap:1rem;list-style:none;margin:0;padding:0}
-    .menu-btn{display:none}
-    @media (max-width:820px){
-      nav ul{display:none}
-      .menu-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border:1px solid #334155;border-radius:12px;background:transparent;color:var(--text)}
-      .mobile-menu{display:none;position:absolute;inset-inline:0;top:64px;background:#0b1022;border-bottom:1px solid #1f2937}
-      .mobile-menu.open{display:block}
-      .mobile-menu ul{display:grid;gap:.2rem;list-style:none;margin:0;padding:1rem}
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb;
+        --paper:#ffffff;
+        --ink:#0f172a;
+        --muted:#475569;
+        --ring:rgba(124,58,237,.25);
+        --brand:#0ea5e9;
+        --accent:#7c3aed;
+        --card:#ffffff;
+        --card-border:rgba(15,23,42,.08);
+        --shadow:0 10px 24px rgba(2,6,23,.08);
+      }
     }
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:4rem 0}
-    .hero .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:1.4rem;box-shadow:var(--shadow)}
-    .hero h1{font-size:clamp(28px,4vw,46px);line-height:1.2;margin:.4rem 0}
-    .hero p{color:var(--muted);margin:0 0 1rem}
-    .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .7rem;border:1px dashed #334155;border-radius:999px;color:#cbd5e1;font-size:.9rem;background:rgba(2,6,23,.6)}
-    .pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
-    .pill{padding:.45rem .7rem;border-radius:999px;background:#0b1225;border:1px solid #243042;color:#c7d2fe}
-    .mock{aspect-ratio:4/3;border-radius:var(--radius);background:linear-gradient(160deg,#111827,#0b1022);border:1px solid #243042;display:grid;place-items:center;position:relative;overflow:hidden}
-    .mock::after{content:"لقطة شاشة لموقعك";color:#94a3b8;opacity:.8}
-    @media (max-width:900px){.hero{grid-template-columns:1fr;}}
-    section{padding:3rem 0;border-top:1px solid rgba(148,163,184,.08)}
-    .grid{display:grid;gap:1rem}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:900px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow)}
-    .card h3{margin:.4rem 0 0}
-    .muted{color:var(--muted)}
-    .list{display:grid;gap:.5rem;margin:1rem 0 0;padding:0}
-    .list li{list-style:"✓  ";padding-inline-start:.4rem}
-    .kpis{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem}
-    .kpi{flex:1 1 220px;background:#0b1225;border:1px solid #243042;border-radius:14px;padding:1rem}
-    .kpi b{font-size:1.6rem}
-    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    @media (max-width:900px){.pricing{grid-template-columns:1fr}}
-    .price{border:1px solid #243042;border-radius:16px;background:#0b1225;padding:1.2rem;position:relative}
-    .price .tag{position:absolute;top:12px;inset-inline-start:12px;background:linear-gradient(135deg,var(--ok),var(--accent));color:#0b1022;padding:.25rem .6rem;border-radius:999px;font-weight:700}
-    footer{padding:2.5rem 0;color:#a3a3a3}
-    .social a{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border:1px solid #243042;border-radius:12px}
-    .divider{height:1px;background:#1f2937;margin:1.2rem 0}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+    /* عند تفعيل الثيم يدويًا */
+    html[data-theme="dark"]{
+      --bg:#0b1020;--paper:#0f172a;--ink:#e5e7eb;--muted:#94a3b8;--ring:rgba(34,211,238,.35);
+      --brand:#22d3ee;--accent:#7c3aed;--card:#0f172a;--card-border:rgba(148,163,184,.2);
+      --shadow:0 10px 30px rgba(2,6,23,.4);
+    }
+    html[data-theme="light"]{
+      --bg:#f6f7fb;--paper:#ffffff;--ink:#0f172a;--muted:#475569;--ring:rgba(124,58,237,.25);
+      --brand:#0ea5e9;--accent:#7c3aed;--card:#ffffff;--card-border:rgba(15,23,42,.08);
+      --shadow:0 10px 24px rgba(2,6,23,.08);
+    }
+
+    /* شريط علوي */
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(180deg, rgba(2,6,23,.8), rgba(2,6,23,.4));
+      border-bottom:1px solid var(--card-border);
+      padding:.6rem .9rem;
+    }
+    html[data-theme="light"] .topbar{background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7))}
+    .container{max-width:1100px;margin-inline:auto;padding:0 1rem}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;letter-spacing:.3px}
+    .logo{
+      inline-size:36px;block-size:36px;border-radius:50%;
+      background:conic-gradient(from 210deg,var(--brand),var(--accent));
+      box-shadow:0 0 0 4px rgba(124,58,237,.15);
+    }
+    .brand span{font-size:1.05rem}
+
+    /* أزرار عامة */
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.55rem .85rem;border-radius:999px;border:1px solid transparent;
+      background:linear-gradient(180deg,var(--brand),var(--accent));color:white;
+      box-shadow:0 8px 20px rgba(124,58,237,.35);cursor:pointer;
+      transition:.2s transform,.2s filter,.2s box-shadow;
+      user-select:none;white-space:nowrap
+    }
+    .btn:hover{transform:translateY(-1px);filter:saturate(115%);box-shadow:0 12px 30px rgba(124,58,237,.45)}
+    .btn.secondary{background:transparent;color:var(--ink);border-color:var(--card-border);box-shadow:none}
+    .btn.ghost{background:transparent;color:var(--ink);border:1px dashed var(--card-border)}
+    .icon{font-style:normal}
+
+    /* بروفايل مصغّر */
+    .avatar-wrap{display:flex;align-items:center;gap:.6rem}
+    .avatar{
+      inline-size:40px;block-size:40px;border-radius:50%;overflow:hidden;border:1px solid var(--card-border);
+      background:radial-gradient(120px 120px at 20% 20%, var(--accent), transparent),
+                 radial-gradient(140px 140px at 80% 80%, var(--brand), transparent),
+                 linear-gradient(135deg, #222, #111);
+      box-shadow:0 6px 18px rgba(0,0,0,.25)
+    }
+    .avatar img{inline-size:100%;block-size:100%;object-fit:cover}
+
+    /* شريط أدوات */
+    .actions{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+
+    /* منطقة المحتوى */
+    main{padding:1.1rem 0}
+    .grid{
+      display:grid;gap:1rem;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:680px){.grid{grid-template-columns:1fr 1fr}}
+    @media (min-width:1024px){.grid{grid-template-columns:1fr 1fr 1fr}}
+
+    /* بطاقة مقال */
+    .card{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:18px;overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:.25s transform cubic-bezier(.2,.6,.3,1), .25s box-shadow;
+      display:flex;flex-direction:column;min-height:100%;
+    }
+    .card:hover{transform:translateY(-3px)}
+    .cover{aspect-ratio:16/9;object-fit:cover;background:#111}
+    .content{padding:1rem 1rem 0.5rem}
+    .meta{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.35rem}
+    .title{margin:0;font-size:1rem}
+    .date{font-size:.8rem;color:var(--muted)}
+    .tags{display:flex;flex-wrap:wrap;gap:.35rem;margin:.4rem 0 .6rem}
+    .tag{font-size:.75rem;padding:.2rem .55rem;border-radius:999px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.22)}
+    .excerpt{color:var(--muted);margin:.2rem 0 .9rem}
+    .card .controls{display:flex;gap:.5rem;margin:.6rem 1rem 1rem}
+    .card .controls .btn{padding:.45rem .75rem}
+
+    /* لوحة التفاصيل مع أنيميشن فتح/إغلاق */
+    .details{
+      overflow:hidden;height:0;opacity:0;transition:height .35s ease, opacity .3s ease;
+      border-top:1px dashed var(--card-border);margin:0 1rem 1rem;border-radius:12px;padding:0 .2rem;
+    }
+    .details.open{opacity:1}
+    .details-content{padding:.9rem .2rem .8rem;color:var(--ink)}
+    .details p{margin:.5rem 0}
+
+    /* مودال */
+    .modal{
+      position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.45);z-index:100;
+      padding:1rem
+    }
+    .modal.open{display:grid;animation:fadeIn .15s ease}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .sheet{
+      width:min(780px,100%);max-height:90vh;overflow:auto;background:var(--paper);border:1px solid var(--card-border);
+      border-radius:18px;box-shadow:var(--shadow);padding:1rem
+    }
+    .sheet h3{margin:0 0 .8rem}
+    .form{display:grid;gap:.8rem}
+    .row2{display:grid;gap:.8rem;grid-template-columns:1fr}
+    @media (min-width:640px){.row2{grid-template-columns:1fr 1fr}}
+    .field{display:grid;gap:.35rem}
+    .field label{font-size:.9rem;color:var(--muted)}
+    .field input[type="text"], .field textarea{
+      padding:.65rem .75rem;border-radius:12px;border:1px solid var(--card-border);background:transparent;color:var(--ink)
+    }
+    .field textarea{min-height:140px;resize:vertical}
+    .muted{color:var(--muted);font-size:.85rem}
+
+    /* شريط سفلي صغير */
+    footer{padding:1.2rem 0;color:var(--muted);text-align:center}
+
+    /* تركيز واضح للوصولية */
+    :focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:12px}
+
+    /* ====== قوائم منبثقة صغيرة (Popover) ====== */
+    .popover{
+      position:fixed;display:none;min-width:220px;background:var(--paper);
+      border:1px solid var(--card-border);box-shadow:var(--shadow);border-radius:14px;
+      padding:.35rem;z-index:120
+    }
+    .popover.open{display:block;animation:fadeIn .12s ease}
+    .menu{display:grid}
+    .item{
+      background:transparent;border:0;text-align:right;padding:.6rem .8rem;border-radius:10px;
+      color:var(--ink);cursor:pointer
+    }
+    .item:hover{background:rgba(124,58,237,.08)}
+    .divider{height:1px;background:var(--card-border);margin:.35rem .2rem}
+    .small{color:var(--muted);font-size:.85rem;padding:.25rem .8rem .4rem}
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <a href="#home" class="brand" aria-label="الصفحة الرئيسية">
-        <span class="logo" aria-hidden="true"></span>
-        <span>خدمات تقنية</span>
-      </a>
-      <nav>
-        <button class="menu-btn" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">القائمة ▾</button>
-        <ul>
-          <li><a href="#services">الخدمات</a></li>
-          <li><a href="#work">أعمال</a></li>
-          <li><a href="#pricing">الباقات</a></li>
-          <li><a href="#contact">تواصل</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div id="mobileMenu" class="mobile-menu" hidden>
-      <ul>
-        <li><a href="#services">الخدمات</a></li>
-        <li><a href="#work">أعمال</a></li>
-        <li><a href="#pricing">الباقات</a></li>
-        <li><a href="#contact">تواصل</a></li>
-      </ul>
-    </div>
-  </header>  <!-- Hero -->  <main id="home" class="container hero">
-    <div>
-      <span class="badge">جاهز لبناء موقعك اليوم؟</span>
-      <h1>نحو حضور رقمي أنيق وسريع الأداء.</h1>
-      <p>نساعدك في تصميم وبرمجة مواقع حديثة مستجيبة لكل الشاشات، مع كتابة محتوى عربي احترافي وترجمة دقيقة عند الحاجة انشاء فيدوهات بالذكاء الاصطناعي ، كتابة مقالات ..</p>
-      <div class="pill-row" aria-label="التقنيات المستخدمة">
-        <span class="pill">HTML</span>
-        <span class="pill">CSS</span>
-        <span class="pill">JavaScript</span>
-        <span class="pill">React (اختياري)</span>
-        <span class="pill">SEO</span>
-        <span class="pill">A11y</span>
+  <!-- ====== الشريط العلوي ====== -->
+  <header class="topbar">
+    <div class="container row">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>مدونة — مقالاتي</span>
       </div>
-      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-        <a class="btn" href="#contact">ابدأ الآن</a>
-        <a class="btn ghost" href="#work">استعرض الأعمال</a>
-      </div>
-      <div class="kpis" aria-label="مؤشرات">
-        <div class="kpi"><b>+50</b><div class="muted">مشروع منجز</div></div>
-        <div class="kpi"><b>≤1.0s</b><div class="muted">زمن تفاعل أولي</div></div>
-        <div class="kpi"><b>+95</b><div class="muted">درجة Lighthouse</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="mock" role="img" aria-label="معاينة تصميم موقع"></div>
-    </div>
-  </main>  <!-- Services -->  <section id="services">
-    <div class="container">
-      <h2>الخدمات</h2>
-      <p class="muted">اختَر ما تحتاجه، أو اطلب باقة مخصصة.</p>
-      <div class="grid cols-3" style="margin-top:1rem">
-        <div class="card">
-          <h3>برمجة مواقع</h3>
-          <p class="muted">مواقع سريعة وآمنة مع أفضل الممارسات.</p>
-          <ul class="list">
-            <li>تصميم واجهات حديث</li>
-            <li>لوحة تحكم بسيطة</li>
-            <li>تكامل مع واتساب وبريد</li>
-          </ul>
+      <div class="actions">
+        <button class="btn secondary" id="themeToggle" aria-label="تبديل الوضع"><i class="icon">🌓</i><span>نهار/ليل</span></button>
+
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatarBox" aria-label="صورة البروفايل"><img id="avatarImg" alt="صورة البروفايل"></div>
+          <button class="btn ghost" id="changeAvatarBtn"><i class="icon">🖼️</i><span>تغيير الصورة</span></button>
+          <input type="file" id="avatarInput" accept="image/*" hidden>
         </div>
-        <div class="card">
-          <h3>تصميم جرافيك</h3>
-          <p class="muted">هوية بصرية وشعارات وبروفايلات شركات.</p>
-          <ul class="list">
-            <li>شعار + ألوان وخطوط</li>
-            <li>بوستات سوشيال</li>
-            <li>عروض تقديمية</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>كتابة وترجمة</h3>
-          <p class="muted">محتوى عربي واضح وترجمة إنجليزي/عربي.</p>
-          <ul class="list">
-            <li>صفحات خدمات ومدونة</li>
-            <li>تحسين محركات البحث</li>
-            <li>تدقيق لغوي</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>  <!-- Work / Portfolio -->  <section id="work">
-    <div class="container">
-      <h2>نماذج أعمال</h2>
-      <p class="muted">صور وعناوين لمشاريع يمكن استبدالها لاحقًا.</p>
-      <div class="grid cols-3" style="margin-top:1rem">
-        <div class="card">
-          <div class="mock" aria-label="معاينة مشروع 1"></div>
-          <h3>موقع شركة متقدمة</h3>
-          <p class="muted">واجهة هبوط مع نموذج تواصل سريع.</p>
-        </div>
-        <div class="card">
-          <div class="mock" aria-label="معاينة مشروع 2"></div>
-          <h3>متجر إلكتروني مصغّر</h3>
-          <p class="muted">سلة مشتريات ودفع عند الاستلام.</p>
-        </div>
-        <div class="card">
-          <div class="mock" aria-label="معاينة مشروع 3"></div>
-          <h3>مدونة تقنية</h3>
-          <p class="muted">تصنيفات ومشاركات محسّنة للسيو.</p>
-        </div>
-      </div>
-    </div>
-  </section>  <!-- Pricing -->  <section id="pricing">
-    <div class="container">
-      <h2>الباقات</h2>
-      <p class="muted">أسعار استرشادية — يمكن التخصيص حسب المطلوب.</p>
-      <div class="pricing" style="margin-top:1rem">
-        <div class="price">
-          <span class="tag">مبتدئ</span>
-          <h3>صفحة هبوط</h3>
-          <p class="muted">صفحة واحدة، تصميم مخصص، نموذج تواصل.</p>
-          <ul class="list">
-            <li>متجاوبة لجميع الشاشات</li>
-            <li>تحسين سرعة وأساسيات السيو</li>
-            <li>تسليم خلال 3–5 أيام</li>
-          </ul>
-          <div class="divider"></div>
-          <a href="#contact" class="btn" aria-label="طلب باقة صفحة هبوط">اطلب الآن</a>
-        </div>
-        <div class="price">
-          <span class="tag">شائع</span>
-          <h3>موقع تعريفي</h3>
-          <p class="muted">حتى 5 صفحات (الرئيسية، عنا، خدمات، أعمال، تواصل).</p>
-          <ul class="list">
-            <li>تكامل واتساب وبريد</li>
-            <li>محتوى عربي مُنقّح</li>
-            <li>دليل إدارة بسيط</li>
-          </ul>
-          <div class="divider"></div>
-          <a href="#contact" class="btn" aria-label="طلب باقة موقع تعريفي">ابدأ</a>
-        </div>
-        <div class="price">
-          <span class="tag">مخصص</span>
-          <h3>حل متقدم</h3>
-          <p class="muted">لوحة تحكم، عضويات، تكاملات خارجية.</p>
-          <ul class="list">
-            <li>تصميم/برمجة حسب الطلب</li>
-            <li>اختبارات وضمان لمدة شهر</li>
-            <li>قابلية توسّع</li>
-          </ul>
-          <div class="divider"></div>
-          <a href="#contact" class="btn" aria-label="طلب حل متقدم">ناقشنا فكرتك</a>
-        </div>
-      </div>
-    </div>
-  </section>  <!-- Contact -->  <section id="contact">
-    <div class="container">
-      <h2>تواصل معنا</h2>
-      <p class="muted">أخبرنا عن مشروعك لنبدأ فورًا.</p>
-      <div class="grid cols-2" style="margin-top:1rem">
-        <form class="card" id="contactForm">
-          <label class="sr-only" for="name">الاسم</label>
-          <input id="name" name="name" required placeholder="الاسم" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)" />
-          <label class="sr-only" for="email">البريد</label>
-          <input id="email" name="email" type="email" required placeholder="البريد الإلكتروني" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)" />
-          <label class="sr-only" for="message">الرسالة</label>
-          <textarea id="message" name="message" rows="4" required placeholder="اكتب وصفًا سريعًا لاحتياجك" style="width:100%;margin:.4rem 0;padding:.8rem 1rem;border-radius:12px;border:1px solid #243042;background:#0b1225;color:var(--text)"></textarea>
-          <button class="btn" type="submit">إرسال</button>
-          <p class="muted" id="formNote" style="margin-top:.5rem">سيتم فتح واتساب برسالة جاهزة.</p>
-        </form>
-        <div class="card">
-          <h3>معلومات</h3>
-          <ul class="list">
-            <li>الاستجابة خلال 24 ساعة</li>
-            <li>دعم عبر البريد وواتساب</li>
-            <li>فاتورة وتسليم ملفات المصدر</li>
-          </ul>
-          <div class="kpis">
-            <div class="kpi"><b>+4</b><div class="muted">سنوات خبرة</div></div>
-            <div class="kpi"><b>+20</b><div class="muted">مجال صناعة</div></div>
+
+        <!-- زر المراسلة -->
+        <button class="btn secondary" id="contactBtn" aria-haspopup="menu"><i class="icon">📧</i><span>مراسلة</span></button>
+        <!-- قائمة المراسلة -->
+        <div class="popover" id="contactMenu" role="menu" aria-hidden="true">
+          <div class="menu">
+            <div class="small">البريد: <b id="emailText">waseemjamal.2040@gmail.com</b></div>
+            <button class="item" id="mailtoBtn">فتح تطبيق البريد</button>
+            <button class="item" id="copyEmailBtn">نسخ البريد</button>
           </div>
         </div>
+
+        <!-- النسخ الاحتياطي -->
+        <button class="btn ghost" id="backupBtn" aria-haspopup="menu"><i class="icon">💾</i><span>نسخة احتياطية</span></button>
+        <div class="popover" id="backupMenu" role="menu" aria-hidden="true">
+          <div class="menu">
+            <button class="item" id="exportBtn">تصدير JSON</button>
+            <button class="item" id="importBtn">استيراد JSON</button>
+          </div>
+        </div>
+        <input type="file" id="importInput" accept="application/json" hidden>
+
+        <button class="btn" id="addBtn"><i class="icon">✍️</i><span>إضافة مقال</span></button>
       </div>
     </div>
-  </section>  <footer class="container">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
-      <div>© <span id="year"></span> خدمات تقنية — كل الحقوق محفوظة.</div>
-      <div class="social" aria-label="روابط">
-        <a href="#" aria-label="واتساب" id="whBtn">واتساب</a>
-        <a href="mailto:waseemja2004@gmail.com" aria-label="بريد">بريد</a>
-        <a href="#home" aria-label="أعلى">للأعلى ↑</a>
-      </div>
+  </header>
+
+  <!-- ====== المحتوى ====== -->
+  <main class="container">
+    <section id="articlesGrid" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer class="container">
+    <small>🚀 كل التعديلات تُحفظ تلقائيًا على هذا المتصفح (localStorage). استخدم النسخة الاحتياطية لنقل بياناتك بين الأجهزة.</small>
+  </footer>
+
+  <!-- ====== مودال إضافة/تعديل مقال ====== -->
+  <div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="sheet">
+      <h3 id="modalTitle">إضافة مقال</h3>
+      <form id="articleForm" class="form">
+        <div class="row2">
+          <div class="field">
+            <label for="title">العنوان</label>
+            <input id="title" type="text" required placeholder="اكتب عنوانًا جذّابًا">
+          </div>
+          <div class="field">
+            <label for="tags">وسوم (افصل بينها بفاصلة)</label>
+            <input id="tags" type="text" placeholder="تقنية, تصميم, ويب">
+          </div>
+        </div>
+        <div class="field">
+          <label for="excerpt">ملخص قصير</label>
+          <input id="excerpt" type="text" maxlength="160" placeholder="سطر يلخص المقال">
+        </div>
+        <div class="field">
+          <label for="content">المحتوى</label>
+          <textarea id="content" required placeholder="اكتب المحتوى الكامل هنا"></textarea>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="cover">صورة الغلاف (اختياري)</label>
+            <input id="cover" type="file" accept="image/*">
+            <small class="muted">يتم ضغط الصورة تلقائيًا للحفاظ على الأداء.</small>
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <div class="muted">تلميح: يمكنك تعديل المقال لاحقًا أو حذفُه بسهولة.</div>
+          </div>
+        </div>
+        <div class="actions" style="justify-content:flex-end">
+          <button type="button" class="btn secondary" id="cancelModal">إلغاء</button>
+          <button type="submit" class="btn" id="saveArticleBtn">حفظ</button>
+        </div>
+        <input type="hidden" id="editingId" value="">
+      </form>
     </div>
-  </footer>  <script>
-    // سنة الفوتر
-    document.getElementById('year').textContent = new Date().getFullYear();
+  </div>
 
-    // قائمة الجوال
-    const btn = document.getElementById('menuBtn');
-    const mobile = document.getElementById('mobileMenu');
-    btn?.addEventListener('click', () => {
-      const open = mobile.classList.toggle('open');
-      mobile.toggleAttribute('hidden', !open);
-      btn.setAttribute('aria-expanded', String(open));
-    });
+  <!-- ====== سكربت الوظائف ====== -->
+  <script>
+    // مفاتيح التخزين
+    const STORAGE_KEY = 'blog.articles.v2';
+    const PROFILE_KEY = 'blog.profile.v1';
+    const THEME_KEY   = 'blog.theme.v1';
 
-    // إرسال رسالة واتساب جاهزة
-    const phone = '+970598306258'; // ← عدّل الرقم
-    function buildWA(text){
-      const t = encodeURIComponent(text);
-      return `https://wa.me/${phone.replace(/\D/g,'')}?text=${t}`;
+    // ====== بريدك ======
+    const EMAIL = 'waseemjamal.2040@gmail.com';
+
+    // عناصر DOM
+    const grid = document.getElementById('articlesGrid');
+    const modal = document.getElementById('articleModal');
+    const form = document.getElementById('articleForm');
+    const titleInp = document.getElementById('title');
+    const tagsInp = document.getElementById('tags');
+    const excerptInp = document.getElementById('excerpt');
+    const contentInp = document.getElementById('content');
+    const coverInp = document.getElementById('cover');
+    const editingId = document.getElementById('editingId');
+    const modalTitle = document.getElementById('modalTitle');
+    const cancelModalBtn = document.getElementById('cancelModal');
+    const addBtn = document.getElementById('addBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const avatarImg = document.getElementById('avatarImg');
+    const avatarInput = document.getElementById('avatarInput');
+    const changeAvatarBtn = document.getElementById('changeAvatarBtn');
+
+    // عناصر البريد والنسخ الاحتياطي
+    const contactBtn = document.getElementById('contactBtn');
+    const contactMenu = document.getElementById('contactMenu');
+    const emailText = document.getElementById('emailText');
+    const mailtoBtn = document.getElementById('mailtoBtn');
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+
+    const backupBtn = document.getElementById('backupBtn');
+    const backupMenu = document.getElementById('backupMenu');
+    const exportBtn = document.getElementById('exportBtn');
+    const importBtn = document.getElementById('importBtn');
+    const importInput = document.getElementById('importInput');
+
+    // ====== أدوات مساعدة ======
+    const sleep = (ms)=> new Promise(r=>setTimeout(r,ms));
+
+    function lsGet(key, fallback){
+      try{const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback;}
+      catch{ return fallback }
     }
-    document.getElementById('whBtn')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.open(buildWA('مرحبًا، أريد الاستفسار عن خدمة.'), '_blank');
+    function lsSet(key, value){
+      try{ localStorage.setItem(key, JSON.stringify(value)); }
+      catch(e){ alert('تعذر الحفظ المحلي: ' + (e?.message||e)) }
+    }
+
+    function formatDate(ts){
+      const d = new Date(ts);
+      return d.toLocaleDateString('ar-EG', {year:'numeric', month:'long', day:'numeric'});
+    }
+
+    function createId(){ return 'a_' + Math.random().toString(36).slice(2) + Date.now().toString(36) }
+
+    // ضغط صورة إلى DataURL (JPEG) مع حد أقصى للأبعاد
+    async function fileToDataURLCompressed(file, maxW=1400, maxH=900, quality=.85){
+      if(!file) return null;
+      const bitmap = await createImageBitmap(file);
+      let {width:w, height:h} = bitmap;
+      const ratio = Math.min(maxW / w, maxH / h, 1);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(w * ratio);
+      canvas.height = Math.round(h * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const blob = await new Promise(res=>canvas.toBlob(res, 'image/jpeg', quality));
+      const reader = new FileReader();
+      return await new Promise((resolve, reject)=>{
+        reader.onload = ()=>resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    // ====== الثيم ======
+    function applyTheme(theme){
+      if(theme==='light'||theme==='dark'){ document.documentElement.setAttribute('data-theme', theme); }
+      else{ document.documentElement.removeAttribute('data-theme'); } // استخدم تفضيل النظام
+    }
+    function initTheme(){
+      const saved = lsGet(THEME_KEY, null);
+      applyTheme(saved);
+    }
+    themeToggle.addEventListener('click', ()=>{
+      const current = document.documentElement.getAttribute('data-theme') || 'auto';
+      const next = current==='dark' ? 'light' : current==='light' ? null : 'dark';
+      applyTheme(next);
+      lsSet(THEME_KEY, next);
     });
 
-    document.getElementById('contactForm')?.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const text = `اسمي: ${name}\nالبريد: ${email}\n\n${message}`;
-      window.open(buildWA(text), '_blank');
+    // ====== البروفايل ======
+    function renderAvatar(){
+      const p = lsGet(PROFILE_KEY, {});
+      if(p.avatar){ avatarImg.src = p.avatar; }
+      else{
+        // صورة افتراضية SVG أنيقة
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+            <rect width="120" height="120" fill="#111"/>
+            <circle cx="60" cy="60" r="58" fill="url(#g)" opacity=".25"/>
+            <circle cx="60" cy="48" r="20" fill="#fff" opacity=".9"/>
+            <rect x="25" y="76" width="70" height="30" rx="15" fill="#fff" opacity=".9"/>
+          </svg>`;
+        avatarImg.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+      }
+    }
+    changeAvatarBtn.addEventListener('click', ()=> avatarInput.click());
+    avatarInput.addEventListener('change', async ()=>{
+      const file = avatarInput.files?.[0];
+      if(!file) return;
+      const dataUrl = await fileToDataURLCompressed(file, 512, 512, .9);
+      const p = lsGet(PROFILE_KEY, {});
+      p.avatar = dataUrl;
+      lsSet(PROFILE_KEY, p);
+      renderAvatar();
     });
-  </script></body>
+
+    // ====== البيانات ======
+    function loadArticles(){
+      const a = lsGet(STORAGE_KEY, null);
+      if(a && Array.isArray(a)) return a;
+      // بيانات أولية أنيقة
+      const seed = [
+        {
+          id:createId(), title:'مرحبًا بك في مدونتك 👋', tags:['تعليمات','بدء سريع'],
+          excerpt:'هذا مثال لمقال تجريبي. يمكنك تعديله أو حذفه، أو إضافة مقالات جديدة من الزر بالأعلى.',
+          content:`هذه مدونتك الخفيفة تعمل بالكامل على المتصفح وتدعم الحفظ التلقائي.
+
+- لحفظ صورة بروفايلك اضغط "تغيير الصورة".
+- لإضافة مقال: اضغط "إضافة مقال".
+- اضغط "قراءة" لفتح/إغلاق المحتوى مع تأثير لطيف.
+- يدعم الوضعين نهاري/ليلي ويحترم تفضيل نظامك.`,
+          cover:null, createdAt:Date.now()-86400000*2
+        },
+        {
+          id:createId(), title:'تصميم عصري ومتجاوب', tags:['واجهة','CSS','Responsive'],
+          excerpt:'البطاقات تستخدم Grid وتتكيف تلقائيًا مع الهاتف والتابلت والكمبيوتر.',
+          content:'تم بناء الشبكة باستخدام CSS Grid مع نسب وتباعدات مدروسة. كما تم الاهتمام بإظهار أنيميشن سلس عند فتح تفاصيل المقال.',
+          cover:null, createdAt:Date.now()-86400000
+        }
+      ];
+      lsSet(STORAGE_KEY, seed);
+      return seed;
+    }
+    function saveArticles(list){ lsSet(STORAGE_KEY, list); }
+
+    // ====== العرض ======
+    function escapeHtml(s){ return s.replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[m])) }
+
+    function createCard(a){
+      const wrap = document.createElement('article');
+      wrap.className = 'card';
+      const cover = document.createElement('img');
+      cover.className = 'cover';
+      cover.alt = a.title;
+      cover.src = a.cover || 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="1200" height="675" fill="#0f172a"/><rect x="0" y="0" width="1200" height="675" fill="url(#g)" opacity=".25"/><text x="50%" y="52%" font-size="64" fill="#ffffffcc" text-anchor="middle" font-family="system-ui,Segoe UI,Arial">لا توجد صورة غلاف</text></svg>`);
+      const content = document.createElement('div');
+      content.className = 'content';
+      const meta = document.createElement('div'); meta.className = 'meta';
+      const h = document.createElement('h3'); h.className='title'; h.textContent = a.title;
+      const date = document.createElement('div'); date.className='date'; date.textContent = formatDate(a.createdAt);
+      meta.append(h, date);
+
+      const tags = document.createElement('div'); tags.className='tags';
+      (a.tags||[]).filter(Boolean).slice(0,6).forEach(t=>{ const span=document.createElement('span'); span.className='tag'; span.textContent = '#'+t.trim(); tags.appendChild(span); });
+
+      const ex = document.createElement('p'); ex.className='excerpt'; ex.textContent = a.excerpt || (a.content?.slice(0,120) || '') + (a.content?.length>120?'…':'');
+
+      const ctrls = document.createElement('div'); ctrls.className='controls';
+      const readBtn = btn('secondary','📖','قراءة');
+      const editBtn = btn('ghost','✏️','تعديل');
+      const delBtn  = btn('ghost','🗑️','حذف');
+      ctrls.append(readBtn, editBtn, delBtn);
+
+      const details = document.createElement('div'); details.className='details';
+      const body = document.createElement('div'); body.className='details-content';
+      // حوّل أسطر لفقـرات بسيطة
+      body.innerHTML = a.content.split(/\n{2,}/).map(p=>`<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('');
+      details.appendChild(body);
+
+      content.append(meta, tags, ex);
+      wrap.append(cover, content, ctrls, details);
+
+      // تفاعل فتح/إغلاق مع أنيميشن ارتفاع
+      let isOpen = false;
+      function setOpen(open){
+        isOpen = open;
+        if(open){
+          details.classList.add('open');
+          details.style.height = 'auto';
+          const h = details.clientHeight+'px';
+          details.style.height = '0px';
+          // enforce reflow
+          details.offsetHeight;
+          details.style.height = h;
+        }else{
+          details.style.height = details.clientHeight+'px';
+          // enforce reflow
+          details.offsetHeight;
+          details.style.height = '0px';
+          details.addEventListener('transitionend', ()=>details.classList.remove('open'), {once:true});
+        }
+      }
+      details.addEventListener('transitionend', ()=>{ if(isOpen){ details.style.height='auto'; }});
+
+      readBtn.addEventListener('click', ()=> setOpen(!isOpen));
+      cover.addEventListener('click', ()=> setOpen(!isOpen));
+      h.addEventListener('click', ()=> setOpen(!isOpen));
+
+      editBtn.addEventListener('click', ()=> openEditor(a));
+      delBtn.addEventListener('click', ()=> deleteArticle(a.id));
+
+      return wrap;
+    }
+
+    function btn(kind, icon, label){
+      const b = document.createElement('button');
+      b.className = 'btn ' + kind;
+      const i = document.createElement('i'); i.className='icon'; i.textContent=icon;
+      const s = document.createElement('span'); s.textContent = label;
+      b.append(i,s); return b;
+    }
+
+    function render(){
+      grid.innerHTML = '';
+      const data = loadArticles().slice().sort((a,b)=> b.createdAt - a.createdAt);
+      if(!data.length){
+        const empty = document.createElement('div');
+        empty.className='card';
+        empty.innerHTML = `<div class="content"><h3 class="title">لا توجد مقالات بعد</h3><p class="excerpt">ابدأ رحلتك بالضغط على زر "إضافة مقال".</p></div>`;
+        grid.appendChild(empty);
+        return;
+      }
+      for(const a of data){ grid.appendChild(createCard(a)); }
+    }
+
+    // ====== CRUD ======
+    function openEditor(article=null){
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      if(article){
+        modalTitle.textContent='تعديل مقال';
+        titleInp.value = article.title || '';
+        tagsInp.value = (article.tags||[]).join(', ');
+        excerptInp.value = article.excerpt || '';
+        contentInp.value = article.content || '';
+        editingId.value = article.id;
+        coverInp.value = '';
+      }else{
+        modalTitle.textContent='إضافة مقال';
+        form.reset();
+        editingId.value = '';
+      }
+      titleInp.focus();
+    }
+    function closeEditor(){
+      modal.classList.remove('open');
+      document.body.style.overflow='';
+    }
+
+    async function upsertArticle(e){
+      e.preventDefault();
+      const id = editingId.value || createId();
+      const now = Date.now();
+      const tags = tagsInp.value.split(',').map(s=>s.trim()).filter(Boolean);
+      const coverFile = coverInp.files?.[0];
+      let coverData = null;
+      if(coverFile){ coverData = await fileToDataURLCompressed(coverFile, 1600, 1000, .85); }
+
+      const data = loadArticles();
+      const idx = data.findIndex(x=>x.id===id);
+      if(idx>=0){
+        // تحديث
+        const prev = data[idx];
+        data[idx] = {
+          ...prev,
+          title:titleInp.value.trim(),
+          tags,
+          excerpt:excerptInp.value.trim(),
+          content:contentInp.value.trim(),
+          cover: coverData || prev.cover,
+          // لا نغيّر createdAt
+        };
+      }else{
+        data.push({
+          id, title:titleInp.value.trim(), tags,
+          excerpt:excerptInp.value.trim(), content:contentInp.value.trim(),
+          cover: coverData, createdAt:now
+        });
+      }
+      saveArticles(data);
+      closeEditor();
+      await sleep(60);
+      render();
+    }
+
+    function deleteArticle(id){
+      if(!confirm('هل تريد بالتأكيد حذف هذا المقال؟')) return;
+      const data = loadArticles().filter(a=>a.id!==id);
+      saveArticles(data);
+      render();
+    }
+
+    // ====== Popover عام ======
+    function togglePopover(menuEl, anchorBtn){
+      const isOpen = menuEl.classList.contains('open');
+      closeAllPopovers();
+      if(isOpen) return;
+      const r = anchorBtn.getBoundingClientRect();
+      const top = r.bottom + 8 + window.scrollY;
+      const left = Math.max(8, r.right - 240 + window.scrollX);
+      menuEl.style.top = top + 'px';
+      menuEl.style.left = left + 'px';
+      menuEl.classList.add('open');
+    }
+    function closeAllPopovers(){ contactMenu.classList.remove('open'); backupMenu.classList.remove('open'); }
+    document.addEventListener('click', (e)=>{
+      if(e.target.closest('#contactMenu, #contactBtn, #backupMenu, #backupBtn')) return;
+      closeAllPopovers();
+    });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeAllPopovers(); });
+
+    // ====== مراسلة ======
+    emailText.textContent = EMAIL;
+    contactBtn.addEventListener('click', ()=> togglePopover(contactMenu, contactBtn));
+    mailtoBtn.addEventListener('click', ()=>{
+      const subject = 'رسالة من المدونة';
+      const body = 'أهلاً وسهلاً،%0D%0A%0D%0A(اكتب رسالتك هنا)';
+      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      closeAllPopovers();
+    });
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        alert('تم نسخ البريد ✅');
+      }catch{
+        // fallback
+        const ok = prompt('انسخ البريد يدويًا:', text);
+        if(ok!==null) alert('تم العرض للنسخ.');
+      }
+    }
+    copyEmailBtn.addEventListener('click', ()=> copyText(EMAIL));
+
+    // ====== نسخ احتياطي (تصدير/استيراد) ======
+    backupBtn.addEventListener('click', ()=> togglePopover(backupMenu, backupBtn));
+
+    function exportBackup(){
+      const payload = {
+        version:1,
+        exportedAt:new Date().toISOString(),
+        profile: lsGet(PROFILE_KEY, {}),
+        theme: lsGet(THEME_KEY, null),
+        articles: lsGet(STORAGE_KEY, [])
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'blog-backup-' + new Date().toISOString().slice(0,10) + '.json';
+      document.body.appendChild(a);
+      a.click();
+      URL.revokeObjectURL(a.href);
+      a.remove();
+      closeAllPopovers();
+    }
+    exportBtn.addEventListener('click', exportBackup);
+
+    importBtn.addEventListener('click', ()=> { importInput.value=''; importInput.click(); closeAllPopovers(); });
+    importInput.addEventListener('change', async ()=>{
+      const file = importInput.files?.[0];
+      if(!file) return;
+      try{
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if(!data || !Array.isArray(data.articles)) throw new Error('ملف غير صالح');
+        // دمج المقالات حسب id (تفوز بيانات الملف المستورد)
+        const current = lsGet(STORAGE_KEY, []);
+        const map = new Map(current.map(a=>[a.id, a]));
+        for(const a of data.articles){ if(a && a.id) map.set(a.id, a); }
+        lsSet(STORAGE_KEY, Array.from(map.values()));
+        if(data.profile) lsSet(PROFILE_KEY, data.profile);
+        if('theme' in data) lsSet(THEME_KEY, data.theme);
+        alert('تم الاستيراد بنجاح ✅');
+        renderAvatar(); render();
+      }catch(err){
+        alert('تعذر الاستيراد: ' + (err?.message||err));
+      }
+    });
+
+    // ====== ربط الأحداث ======
+    addBtn.addEventListener('click', ()=> openEditor(null));
+    cancelModalBtn.addEventListener('click', closeEditor);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeEditor() });
+    form.addEventListener('submit', upsertArticle);
+
+    // ====== تشغيل أولي ======
+    (function init(){
+      initTheme();
+      renderAvatar();
+      render();
+    })();
+  </script>
+</body>
 </html>
