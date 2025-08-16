@@ -52,6 +52,7 @@ main{padding:16px}
 .card{
   background:var(--card); border:1px solid var(--card-border);
   border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden;
+  min-width: 0; /* <<< هذا هو السطر الذي تم إضافته لحل مشكلة الموبايل */
 }
 .cover{aspect-ratio:16/9;object-fit:cover;background:#0f172a;width:100%}
 .content{padding:14px}
